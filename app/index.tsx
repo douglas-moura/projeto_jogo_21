@@ -30,6 +30,7 @@ export default function Home() {
 	return (
 		<SafeAreaView style={styles.mesa}>
 			<StatusBar barStyle="light-content" />
+			<Menu />
 			<View style={[styles.jogadorContainer, styles.oponente]}>
 				<View style={rodada % 2 === 1 ? styles.pelicula : {display: 'none'}}></View>
 				<View style={styles.jogadorInfos}>
