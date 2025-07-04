@@ -17,7 +17,7 @@ export default function Home() {
 	const [ptsJogador1, setPtsJogador1] = useState(0)
 	const [ptsJogador2, setPtsJogador2] = useState(0)
 	const [turno, setTurno] = useState(partida.rodada)
-	const [rodada, setRodada] = useState(0)
+	const [rodada, setRodada] = useState(1)
 	const [vencedor, setVencedor] = useState<string | null>(null)
 	const [atualizar, setAtualizar] = useState(false)
 
@@ -38,7 +38,14 @@ export default function Home() {
 			<StatusBar barStyle="light-content" />
 			{/*<Menu />*/}
 			<View style={[styles.jogadorContainer, styles.oponente]}>
-				<View style={[turno % 2 === 1 ? styles.pelicula : { display: 'none' }, vencedor != undefined && vencedor != null ? { opacity: 0 } : null]}></View>
+				<View
+					style={[
+						turno % 2 === 1 ?
+						styles.pelicula : { display: 'none' },
+						vencedor == undefined && vencedor == null ?
+						null : { opacity: 0 }
+					]}
+				/>
 				{vencedor != undefined && vencedor != null && (
 					<View style={styles.notifiContainer}>
 						<Notificacao resultado={vencedor == 'Empate' ? 'Empatou' : vencedor == jogador2.getNome() ? true : false} />
@@ -74,7 +81,10 @@ export default function Home() {
 			</View>
 
 			<View style={styles.baralhoContainer}>
-				<Text style={styles.placarPontos}>{ptsJogador2}</Text>
+				<View style={{ alignItems: 'center' }}>
+					<Text style={styles.placarPontos}>{ptsJogador2}</Text>
+					<Text style={{ fontSize: 10 }}>{jogador2.getNome()}</Text>
+				</View>
 				<Pressable onPress={() => {
 					setJogador1(new JogadorClasse(partida.jogadores[0].getNome()))
 					setJogador2(new JogadorClasse(partida.jogadores[1].getNome()))
@@ -83,19 +93,32 @@ export default function Home() {
 					setRodada(rodada + 1)
 					setAtualizar(a => !a)
 				}}>
-					<View style={styles.placarInfos}>
-						<Icon name="rotate-ccw" size={30} color="#000" />
+					<View style={[styles.placarInfos, { backgroundColor: '#94F7E7', borderRadius: 50 }]}>
+						<Icon name="rotate-ccw" size={20} color="#000" />
 					</View>
 				</Pressable>
 				<View style={styles.baralhoIcon}>
 					<Carta carta={undefined} />
 				</View>
-				<Text style={styles.placarInfos}>Round: {rodada}</Text>
-				<Text style={styles.placarPontos}>{ptsJogador1}</Text>
+				<View style={[styles.placarInfos]}>
+					<Text style={{ fontSize: 10, fontWeight: 'bold' }}>Round:</Text>
+					<Text style={{ fontSize: 28 }}>{rodada}</Text>
+				</View>
+				<View style={{ alignItems: 'center' }}>
+					<Text style={styles.placarPontos}>{ptsJogador1}</Text>
+					<Text style={{ fontSize: 10 }}>{jogador1.getNome()}</Text>
+				</View>
 			</View>
 
 			<View style={[styles.jogadorContainer, styles.jogador]}>
-				<View style={[turno % 2 === 0 ? styles.pelicula : { display: 'none' }, vencedor != undefined && vencedor != null ? { opacity: 0 } : null]}></View>
+				<View
+					style={[
+						turno % 2 === 0 ?
+						styles.pelicula : { display: 'none' },
+						vencedor == undefined && vencedor == null ?
+						null : { opacity: 0 }
+					]}
+				/>
 				{vencedor != undefined && vencedor != null && (
 					<View style={styles.notifiContainer}>
 						<Notificacao resultado={vencedor == 'Empate' ? 'Empatou' : vencedor == jogador1.getNome() ? true : false} />
@@ -149,15 +172,23 @@ const styles = StyleSheet.create({
 		marginHorizontal: 20,
 	},
 	placarInfos: {
-		width: 75,
-		borderWidth: 0,
-		borderColor: 'red',
+		width: 50,
+		height: 50,
+		justifyContent: 'center',
 		textAlign: 'center',
+		alignItems: 'center',
+		//borderWidth: 1,
+		borderColor: 'red',
 	},
 	placarPontos: {
-		marginHorizontal: 16,
+		width: 38,
+		padding: 6,
+		borderRadius: 8,
+		textAlign: 'center',
+		marginHorizontal: 32,
 		fontSize: 24,
 		fontWeight: 'bold',
+		backgroundColor: '#f6f6f6',
 	},
 	pelicula: {
 		position: 'absolute',
@@ -165,7 +196,7 @@ const styles = StyleSheet.create({
 		top: 0,
 		left: 0,
 		width: '200%',
-		height: '200%',
+		height: '150%',
 		backgroundColor: '#000',
 		opacity: 0.2,
 	},
@@ -180,7 +211,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		padding: 38,
 		height: '40%',
-		borderWidth: 1,
+		borderWidth: 0,
 		borderColor: 'blue',
 	},
 	notifiContainer: {
@@ -197,5 +228,5 @@ const styles = StyleSheet.create({
 	},
 	controlesContainer:{
 		flexDirection: 'row',
-	}
+	},
 })
