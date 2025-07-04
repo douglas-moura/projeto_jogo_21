@@ -1,11 +1,12 @@
 import { View, Text, SafeAreaView, StatusBar, StyleSheet, Pressable } from 'react-native'
 import { useState, useEffect } from 'react'
+import { reloadAppAsync } from 'expo'
+import Icon from 'react-native-vector-icons/Feather'
 import JogadorClasse from '../class/JogadorClasse'
 import BaralhoClasse from '../class/BaralhoClasse'
 import PartidaClasse from '../class/PartidaClasse'
 import Carta from '../components/Carta'
 import Menu from './menu'
-import { reloadAppAsync } from 'expo'
 
 export default function Home() {
 	const partida = new PartidaClasse()	
@@ -30,7 +31,7 @@ export default function Home() {
 	return (
 		<SafeAreaView style={styles.mesa}>
 			<StatusBar barStyle="light-content" />
-			<Menu />
+			{/*<Menu />*/}
 			<View style={[styles.jogadorContainer, styles.oponente]}>
 				<View style={rodada % 2 === 1 ? styles.pelicula : {display: 'none'}}></View>
 				<View style={styles.jogadorInfos}>
@@ -61,16 +62,26 @@ export default function Home() {
 					</Pressable>
 				</View>
 			</View>
+
 			<View style={styles.baralhoContainer}>
+				<Text style={styles.placarPontos}>10</Text>
 				<Pressable onPress={() => {
 					setJogador1(new JogadorClasse(partida.jogadores[0].getNome()))
 					setJogador2(new JogadorClasse(partida.jogadores[1].getNome()))
 					setRodada(1)
 					setAtualizar(a => !a)
 				}}>
-					<Text>Reiniciar</Text>
+					<Text style={styles.placarInfos}>
+						<Icon name="rotate-ccw" size={30} color="#000" />
+					</Text>
 				</Pressable>
+				<Text style={styles.baralhoIcon}>
+					<Carta carta={undefined} />
+				</Text>
+				<Text style={styles.placarInfos}>Round: 1</Text>
+				<Text style={styles.placarPontos}>10</Text>
 			</View>
+
 			<View style={[styles.jogadorContainer, styles.jogador]}>
 				<View style={rodada % 2 === 0 ? styles.pelicula : {display: 'none'}}></View>
 				<View style={styles.jogadorInfos}>
@@ -112,9 +123,25 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between'
 	},
 	baralhoContainer: {
-		height: '10%',
+		flexDirection: 'row',
+		height: '20%',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	baralhoIcon: {
+		marginHorizontal: 20,
+		fontSize: 70,
+	},
+	placarInfos: {
+		width: 75,
+		borderWidth: 0,
+		borderColor: 'red',
+		textAlign: 'center',
+	},
+	placarPontos: {
+		marginHorizontal: 16,
+		fontSize: 24,
+		fontWeight: 'bold',
 	},
 	pelicula: {
 		position: 'absolute',
@@ -136,7 +163,7 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 		justifyContent: 'flex-end',
 		padding: 38,
-		height: '45%',
+		height: '40%',
 		borderWidth: 1,
 		borderColor: 'blue',
 	},

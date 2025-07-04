@@ -1,15 +1,27 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, ImageBackground } from "react-native"
 import CartaClasse from "../interfaces/Carta"
 
 type Props = {
-    carta: CartaClasse
+    carta: CartaClasse | undefined
 }
 
 export default function Carta({ carta }: Props) {
+    if (!carta) {
+        // Mostra o verso da carta
+        return (
+            <ImageBackground
+                source={require('../assets/img/card-back.jpg')}
+                style={styles.cartaContainer}
+                imageStyle={{ borderRadius: 6 }}
+            />
+        )
+    }
+
+    // Mostra a carta aberta
     return (
         <View style={styles.cartaContainer}>
-            {carta.valor ? <Text style={styles.cartaNumero}>{carta.valor}</Text> : null}
-            {carta.naipe ? <Text style={styles.cartaSimbolo}>{carta.naipe}</Text> : null}
+            <Text style={styles.cartaNumero}>{carta.valor}</Text>
+            <Text style={styles.cartaSimbolo}>{carta.naipe}</Text>
         </View>
     )
 }
