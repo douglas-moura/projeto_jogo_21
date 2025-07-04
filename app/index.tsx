@@ -41,7 +41,7 @@ export default function Home() {
 				<View style={[turno % 2 === 1 ? styles.pelicula : { display: 'none' }, vencedor != undefined && vencedor != null ? { opacity: 0 } : null]}></View>
 				{vencedor != undefined && vencedor != null && (
 					<View style={styles.notifiContainer}>
-						<Notificacao resultado={vencedor == jogador2.getNome() ? true : false} />
+						<Notificacao resultado={vencedor == 'Empate' ? 'Empatou' : vencedor == jogador2.getNome() ? true : false} />
 					</View>
 				)}
 				<View style={styles.jogadorInfos}>
@@ -98,7 +98,7 @@ export default function Home() {
 				<View style={[turno % 2 === 0 ? styles.pelicula : { display: 'none' }, vencedor != undefined && vencedor != null ? { opacity: 0 } : null]}></View>
 				{vencedor != undefined && vencedor != null && (
 					<View style={styles.notifiContainer}>
-						<Notificacao resultado={vencedor == jogador1.getNome() ? true : false} />
+						<Notificacao resultado={vencedor == 'Empate' ? 'Empatou' : vencedor == jogador1.getNome() ? true : false} />
 					</View>
 				)}
 				<View style={styles.jogadorInfos}>

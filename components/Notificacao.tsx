@@ -2,14 +2,29 @@ import { View, Text, StyleSheet } from "react-native"
 import Icon from 'react-native-vector-icons/Feather'
 
 type NotificacaoProps = {
-    resultado?: boolean
+    resultado?: boolean | string
 }
 
+
+
 export default function Notificacao({ resultado }: NotificacaoProps) {
+    if (resultado != undefined) console.log(resultado)
     return (
-        <View style={[styles.notificacaoContainer, resultado ? styles.vencedor : styles.perdedor ]}>
-            <Icon style={[styles.notificacaoIcone, resultado ? { color: '#468A07' } : { color: '#941234' }]} name={resultado ? 'smile' : 'meh'} size={26} color="#000" />
-            <Text style={[styles.notificacaoTexto, resultado ? { color: '#468A07' } : { color: '#941234' }]}>{ resultado ? 'Vencedor' : 'Você perdeu'}</Text>
+        <View style={[styles.notificacaoContainer, typeof resultado == 'string' ? styles.empate : resultado ? styles.vencedor : styles.perdedor ]}>
+            <Icon
+                style={[
+                    styles.notificacaoIcone,
+                    typeof resultado == 'string' ? { color: '#AC4E00' } : resultado ? { color: '#468A07' } : { color: '#941234' }
+                ]}
+                name={typeof resultado == 'string' ? 'meh' : resultado ? 'smile' : 'frown'}
+                size={26} color="#000"
+            />
+            <Text style={[
+                styles.notificacaoTexto,
+                typeof resultado == 'string' ? { color: '#AC4E00' } : resultado ? { color: '#468A07' } : { color: '#941234' }
+            ]}>
+                { typeof resultado == 'string' ? 'Empatou' : resultado ? 'Vencedor' : 'Você perdeu'}
+            </Text>
         </View>
     )
 }
@@ -38,5 +53,8 @@ const styles = StyleSheet.create({
     },
     perdedor: {
         backgroundColor: '#FAB7A8',
+    },
+    empate: {
+        backgroundColor: '#FDDD98',
     }
 })
