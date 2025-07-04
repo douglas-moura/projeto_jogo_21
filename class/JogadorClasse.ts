@@ -70,4 +70,24 @@ export default class JogadorClasse {
         }
         return Number(valor)
     }
+
+    public encerrarJogada(player1: JogadorClasse, player2: JogadorClasse): string {
+        let resultado: string = ''
+        let pontosMaoJogador1: number = player1.getValorMao() > 21 ? 0 : player1.getValorMao()
+        let pontosMaoJogador2: number = player2.getValorMao() > 21 ? 0 : player2.getValorMao()
+
+        if (player1.getPontos() > 0 && player2.getPontos() > 0) {
+            if((21 - pontosMaoJogador1) < (21 - pontosMaoJogador2)) {
+                console.log(`Jogador ${player1.getValorMao()} ganhou`)
+                resultado = player1.getNome()
+            } else if ((21 - pontosMaoJogador1) > (21 - pontosMaoJogador2)) {
+                console.log(`Jogador ${player2.getValorMao()} ganhou`)
+                resultado = player2.getNome()
+            } else {
+                console.log('Empate')
+                resultado = 'Empate'
+            }
+        }
+        return resultado
+    }
 }

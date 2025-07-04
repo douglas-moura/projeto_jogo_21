@@ -14,8 +14,8 @@ export default function Home() {
 
 	const [jogador1, setJogador1] = useState(new JogadorClasse(partida.jogadores[0].getNome()))
 	const [jogador2, setJogador2] = useState(new JogadorClasse(partida.jogadores[1].getNome()))
-	const [ptsJogador1, setPtsJogador1] = useState(partida.pontosJogadores[0])
-	const [ptsJogador2, setPtsJogador2] = useState(partida.pontosJogadores[1])
+	const [ptsJogador1, setPtsJogador1] = useState(0)
+	const [ptsJogador2, setPtsJogador2] = useState(0)
 	const [turno, setTurno] = useState(partida.rodada)
 	const [rodada, setRodada] = useState(0)
 	const [vencedor, setVencedor] = useState<string | null>(null)
@@ -23,13 +23,8 @@ export default function Home() {
 
 	useEffect(() => {
 		//console.log("Rodada: ", rodada)
-		if (vencedor === jogador1.getNome()) {
-			setPtsJogador1(ptsJogador1 + 1)
-		}
-		if (vencedor === jogador2.getNome()) {
-			setPtsJogador2(ptsJogador2 + 1)
-		}
-		vencedor ? console.log('O vencedor: ', vencedor) : null
+		if (vencedor === jogador1.getNome()) setPtsJogador1(ptsJogador1 + 1)
+		if (vencedor === jogador2.getNome()) setPtsJogador2(ptsJogador2 + 1)
 	}, [atualizar, turno, vencedor])
 
 	const passar = () => {
@@ -70,7 +65,7 @@ export default function Home() {
 					</Pressable>
 					<Pressable onPress={() => {
 						jogador2.setPontos(jogador2.getValorMao())
-						if (jogador1.getPontos() > 0 && jogador2.getPontos() > 0) setVencedor(partida.encerrarJogada(jogador1, jogador2))
+						if (jogador1.getPontos() > 0 && jogador2.getPontos() > 0) setVencedor(jogador2.encerrarJogada(jogador1, jogador2))
 						else passar()
 					}}>
 						<Text>Encerrar</Text>
@@ -127,7 +122,7 @@ export default function Home() {
 					</Pressable>
 					<Pressable onPress={() => {
 						jogador1.setPontos(jogador1.getValorMao())
-						if (jogador1.getPontos() > 0 && jogador2.getPontos() > 0) setVencedor(partida.encerrarJogada(jogador1, jogador2))
+						if (jogador1.getPontos() > 0 && jogador2.getPontos() > 0) setVencedor(jogador1.encerrarJogada(jogador1, jogador2))
 						else passar()
 					}}>
 						<Text>Encerrar</Text>
