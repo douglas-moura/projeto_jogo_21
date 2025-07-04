@@ -42,7 +42,7 @@ export default class JogadorClasse {
         if (this.soma === 0) {
             return 0
         } else if (this.soma > 21) {
-            this.soma = 0
+            this.soma = this.soma
         } else if (this.soma < 0) {
             this.soma = 0
         }
@@ -57,7 +57,7 @@ export default class JogadorClasse {
     }
 
     public comprarCarta(carta: Carta | null): void {
-        if (carta) {
+        if (carta && this.getValorMao() <= 21) {
             this.cartas.push(carta)
             this.soma += this.calcularValorCarta(carta)
         }
