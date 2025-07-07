@@ -1,6 +1,6 @@
 # Jogo 21 – App Mobile com React Native
 
-<img src="./assets/img/print-jogo-21.jpg" alt="Capa do Projeto" width="600" />
+<img src="./assets/img/print-jogo-21.jpg" alt="Capa do Projeto" width="200" />
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Expo](https://img.shields.io/badge/Expo-53.0.16-blue?logo=expo)](https://expo.dev/)
