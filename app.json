@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "jogo-vinte-e-um",
+    "name": "21 (BlackJack)",
     "slug": "jogo-vinte-e-um",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,12 +18,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#252525"
       },
+      "package": "com.douglasmoura.projetovinteum",
+      "versionCode": 1,
       "edgeToEdgeEnabled": true
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "extra": {
+      "eas": {
+        "projectId": "5c085045-2e4c-477f-b56e-da080085f274"
+      }
+    },
+    "owner": "doug_moura"
   }
 }
