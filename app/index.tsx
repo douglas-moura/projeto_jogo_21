@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StatusBar, StyleSheet, Pressable } from 'react-native'
+import { View, Text, SafeAreaView, StatusBar, StyleSheet, Pressable, ImageBackground } from 'react-native'
 import { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/Feather'
 import JogadorClasse from '../class/JogadorClasse'
@@ -34,9 +34,13 @@ export default function Home() {
 	}
 
 	return (
-		<SafeAreaView style={styles.mesa}>
+		<ImageBackground
+            source={require('../assets/img/mesa-back.jpg')}
+            style={styles.mesa}
+            resizeMode="cover"
+        >
 			<StatusBar barStyle="light-content" />
-			{/*<Menu />*/}
+			<Menu />
 			<View style={[styles.jogadorContainer, styles.oponente]}>
 				<View
 					style={[
@@ -152,7 +156,7 @@ export default function Home() {
 					</Pressable>
 				</View>
 			</View>
-		</SafeAreaView>
+		</ImageBackground>
 	)
 }
 
@@ -160,7 +164,7 @@ const styles = StyleSheet.create({
 	mesa: {
 		flex: 1,
 		backgroundColor: '#fff',
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
 	},
 	baralhoContainer: {
 		flexDirection: 'row',
@@ -198,7 +202,7 @@ const styles = StyleSheet.create({
 		width: '200%',
 		height: '150%',
 		backgroundColor: '#000',
-		opacity: 0.2,
+		opacity: 0.5,
 	},
 	jogador: {
 		flexDirection: 'column',
