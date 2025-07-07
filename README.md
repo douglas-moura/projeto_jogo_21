@@ -41,6 +41,6 @@ Explorar conceitos de desenvolvimento mobile com React Native, integrando funcio
    npm start
 
 ## Licença
-Este projeto está licenciado sob a MIT License.
+Este projeto está licenciado sob a **MIT License**.
 
-Desenvolvido por Douglas Moura como parte de seus estudos em desenvolvimento mobile com React Native.
+Desenvolvido por **Douglas Moura** como parte de seus estudos em desenvolvimento mobile com React Native.
