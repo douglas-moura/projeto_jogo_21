@@ -88,7 +88,7 @@ export default function Home() {
 			<View style={styles.baralhoContainer}>
 				<View style={{ alignItems: 'center' }}>
 					<Text style={styles.placarPontos}>{ptsJogador2}</Text>
-					<Text style={{ fontSize: 10 }}>{jogador2.getNome()}</Text>
+					<Text style={{ fontSize: 10, color: '#fff' }}>{jogador2.getNome()}</Text>
 				</View>
 				<Pressable onPress={() => {
 					setJogador1(new JogadorClasse(partida.jogadores[0].getNome()))
@@ -98,20 +98,20 @@ export default function Home() {
 					setRodada(rodada + 1)
 					setAtualizar(a => !a)
 				}}>
-					<View style={[styles.placarInfos, { backgroundColor: '#94F7E7', borderRadius: 50 }]}>
-						<Icon name="rotate-ccw" size={20} color="#000" />
+					<View style={[styles.placarInfos, { backgroundColor: '#252525', borderRadius: 50 }]}>
+						<Icon name="rotate-ccw" size={20} color="#fff" />
 					</View>
 				</Pressable>
 				<View style={styles.baralhoIcon}>
 					<Carta carta={undefined} />
 				</View>
 				<View style={[styles.placarInfos]}>
-					<Text style={{ fontSize: 10, fontWeight: 'bold' }}>Round:</Text>
-					<Text style={{ fontSize: 28 }}>{rodada}</Text>
+					<Text style={{ fontSize: 10, fontWeight: 'bold' }}>Round</Text>
+					<Text style={{ fontSize: 28, fontWeight: 'bold' }}>{rodada}</Text>
 				</View>
 				<View style={{ alignItems: 'center' }}>
 					<Text style={styles.placarPontos}>{ptsJogador1}</Text>
-					<Text style={{ fontSize: 10 }}>{jogador1.getNome()}</Text>
+					<Text style={{ fontSize: 10, color: '#fff' }}>{jogador1.getNome()}</Text>
 				</View>
 			</View>
 
@@ -168,13 +168,15 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	baralhoContainer: {
+		backgroundColor: '#E02F2C',
 		flexDirection: 'row',
-		height: '20%',
+		height: '15%',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	baralhoIcon: {
 		marginHorizontal: 20,
+		transform: 'rotate(12deg)',
 	},
 	placarInfos: {
 		width: 50,
@@ -183,17 +185,18 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		alignItems: 'center',
 		//borderWidth: 1,
-		borderColor: 'red',
 	},
 	placarPontos: {
+		color: '#252525',
 		width: 38,
 		padding: 6,
 		borderRadius: 8,
 		textAlign: 'center',
 		marginHorizontal: 32,
+		marginBottom: 8,
 		fontSize: 24,
 		fontWeight: 'bold',
-		backgroundColor: '#f6f6f6',
+		backgroundColor: '#fff',
 	},
 	pelicula: {
 		position: 'absolute',
@@ -215,7 +218,7 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 		justifyContent: 'flex-end',
 		padding: 28,
-		height: '40%',
+		height: '42.5%',
 		borderWidth: 0,
 		borderColor: 'blue',
 	},

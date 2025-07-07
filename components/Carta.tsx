@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         borderColor: "#fff",
         borderRadius: 6,
         //padding: 8,
-        backgroundColor: "#ededed",
+        backgroundColor: "#fefefe",
         margin: 4,
     },
     imgVersoBaralho: {
