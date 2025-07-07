@@ -19,7 +19,7 @@ export default function Menu() {
                 <Text style={styles.regra}><Text style={styles.negrito}>Passar:</Text> O jogador passa a vez, mas pode comprar mais cartas se a rodada voltar para ele</Text>
                 <Text style={styles.regra}><Text style={styles.negrito}>Encerrar:</Text> O jogador encerra sua participação na rodada, definindo o valor atual da sua mão como final e não podendo mais comprar cartas.</Text>
                 <Pressable onPress={() => setJogoIniciado(!jogoIniciado)}>
-                    <Botao texto="Iniciar" />
+                    <Botao texto="Iniciar Jogo" tipo="iniciar" />
                 </Pressable>
             </View>
             <Text style={styles.rodape}>desenvolvido por <Text style={styles.negrito}>Douglas Moura</Text></Text>

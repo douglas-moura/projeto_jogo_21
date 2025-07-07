@@ -14,14 +14,14 @@ export default function Notificacao({ resultado }: NotificacaoProps) {
             <Icon
                 style={[
                     styles.notificacaoIcone,
-                    typeof resultado == 'string' ? { color: '#AC4E00' } : resultado ? { color: '#468A07' } : { color: '#941234' }
+                    typeof resultado == 'string' ? { color: '#AC4E00' } : resultado ? { color: '#468A07' } : { color: '#A1162B' }
                 ]}
                 name={typeof resultado == 'string' ? 'meh' : resultado ? 'smile' : 'frown'}
                 size={26} color="#000"
             />
             <Text style={[
                 styles.notificacaoTexto,
-                typeof resultado == 'string' ? { color: '#AC4E00' } : resultado ? { color: '#468A07' } : { color: '#941234' }
+                typeof resultado == 'string' ? { color: '#AC4E00' } : resultado ? { color: '#468A07' } : { color: '#A1162B' }
             ]}>
                 { typeof resultado == 'string' ? 'Empatou' : resultado ? 'Vencedor' : 'Você perdeu'}
             </Text>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#DDF89D',
     },
     perdedor: {
-        backgroundColor: '#FAB7A8',
+        backgroundColor: '#F5957F',
     },
     empate: {
         backgroundColor: '#FDDD98',

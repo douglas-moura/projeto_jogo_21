@@ -7,6 +7,7 @@ import PartidaClasse from '../class/PartidaClasse'
 import Carta from '../components/Carta'
 import Notificacao from '../components/Notificacao'
 import Menu from './menu'
+import Botao from '../components/Botao'
 
 export default function Home() {
 	const partida = new PartidaClasse()
@@ -56,8 +57,8 @@ export default function Home() {
 					</View>
 				)}
 				<View style={styles.jogadorInfos}>
-					<Text>{jogador2.getNome()}</Text>
-					<Text>Soma: {jogador2.getValorMao()}</Text>
+					<Text style={styles.jogadorNome}>{jogador2.getNome()}</Text>
+					<Text style={styles.jogadorSoma}>Soma: {jogador2.getValorMao()}</Text>
 				</View>
 				<View style={styles.cartasContainer}>
 					{jogador2.getCartasMao().map((carta, index) => (
@@ -65,21 +66,21 @@ export default function Home() {
 					))}
 				</View>
 				<View style={styles.controlesContainer}>
-					<Pressable onPress={() => {
+					<Pressable style={{ marginRight: 8 }} onPress={() => {
 						jogador2.comprarCarta(baralho.getCarta())
 						setAtualizar(a => !a) // força atualização
 					}}>
-						<Text>Comprar</Text>
+						<Botao texto="Comprar" tipo="comprar" />
 					</Pressable>
-					<Pressable onPress={() => { passar() }}>
-						<Text>Passar</Text>
+					<Pressable style={{ marginRight: 8 }} onPress={() => { passar() }}>
+						<Botao texto="Passar" tipo="passar" />
 					</Pressable>
-					<Pressable onPress={() => {
+					<Pressable style={{ marginRight: 8 }} onPress={() => {
 						jogador2.setPontos(jogador2.getValorMao())
 						if (jogador1.getPontos() > 0 && jogador2.getPontos() > 0) setVencedor(jogador2.encerrarJogada(jogador1, jogador2))
 						else passar()
 					}}>
-						<Text>Encerrar</Text>
+						<Botao texto="Encerrar" tipo="encerrar" />
 					</Pressable>
 				</View>
 			</View>
@@ -129,8 +130,8 @@ export default function Home() {
 					</View>
 				)}
 				<View style={styles.jogadorInfos}>
-					<Text>{jogador1.getNome()}</Text>
-					<Text>Soma: {jogador1.getValorMao()}</Text>
+					<Text style={styles.jogadorNome}>{jogador1.getNome()}</Text>
+					<Text style={styles.jogadorSoma}>Soma: {jogador1.getValorMao()}</Text>
 				</View>
 				<View style={styles.cartasContainer}>
 					{jogador1.getCartasMao().map((carta, index) => (
@@ -138,21 +139,21 @@ export default function Home() {
 					))}
 				</View>
 				<View style={styles.controlesContainer}>
-					<Pressable onPress={() => {
+					<Pressable style={{ marginRight: 8 }} onPress={() => {
 						jogador1.comprarCarta(baralho.getCarta())
 						setAtualizar(a => !a) // força atualização
 					}}>
-						<Text>Comprar</Text>
+						<Botao texto="Comprar" tipo="comprar" />
 					</Pressable>
-					<Pressable onPress={() => { passar() }}>
-						<Text>Passar</Text>
+					<Pressable style={{ marginRight: 8 }} onPress={() => { passar() }}>
+						<Botao texto="Passar" tipo="passar" />
 					</Pressable>
-					<Pressable onPress={() => {
+					<Pressable style={{ marginRight: 8 }} onPress={() => {
 						jogador1.setPontos(jogador1.getValorMao())
 						if (jogador1.getPontos() > 0 && jogador2.getPontos() > 0) setVencedor(jogador1.encerrarJogada(jogador1, jogador2))
 						else passar()
 					}}>
-						<Text>Encerrar</Text>
+						<Botao texto="Encerrar" tipo="encerrar" />
 					</Pressable>
 				</View>
 			</View>
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
 	jogadorContainer: {
 		overflow: 'hidden',
 		justifyContent: 'flex-end',
-		padding: 38,
+		padding: 28,
 		height: '40%',
 		borderWidth: 0,
 		borderColor: 'blue',
@@ -223,14 +224,29 @@ const styles = StyleSheet.create({
 	},
 	jogadorInfos: {
 		marginVertical: 16,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	jogadorNome: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		color: '#fff',
+	},
+	jogadorSoma: {
+		color: "#fff",
+		fontSize: 16,
 	},
 	cartasContainer: {
 		height: 100,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
+		backgroundColor: "#C5EE9966",
+		borderRadius: 8,
 	},
 	controlesContainer:{
 		flexDirection: 'row',
+		marginVertical: 12
 	},
 })
