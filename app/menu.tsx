@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { SafeAreaView, View, Text, StyleSheet, Pressable } from "react-native"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Botao from "../components/Botao"

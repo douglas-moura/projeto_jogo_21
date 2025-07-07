@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
 		width: '200%',
 		height: '150%',
 		backgroundColor: '#000',
-		opacity: 0.5,
+		opacity: 0.75,
 	},
 	jogador: {
 		flexDirection: 'column',
