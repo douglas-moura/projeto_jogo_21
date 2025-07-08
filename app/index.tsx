@@ -22,7 +22,7 @@ export default function Home() {
 	const [vencedor, setVencedor] = useState<string | null>(null)
 	const [atualizar, setAtualizar] = useState(false)
 
-	useEffect(() => {
+	useEffect(() => {		
 		if (vencedor === jogador1.getNome()) setPtsJogador1(ptsJogador1 + 1)
 		if (vencedor === jogador2.getNome()) setPtsJogador2(ptsJogador2 + 1)
 	}, [atualizar, turno, vencedor])
@@ -31,6 +31,15 @@ export default function Home() {
 		partida.proximaRodada()
 		setTurno(turno + 1)
 		setAtualizar(a => !a) // força atualização
+	}
+
+	const resetar = () => {
+		setJogador1(new JogadorClasse(partida.jogadores[0].getNome()))
+		setJogador2(new JogadorClasse(partida.jogadores[1].getNome()))
+		setVencedor(null)
+		setTurno(1)
+		setRodada(rodada + 1)
+		setAtualizar(a => !a)
 	}
 
 	return (
@@ -66,12 +75,16 @@ export default function Home() {
 				</View>
 				<View style={styles.controlesContainer}>
 					<Pressable style={{ marginRight: 8 }} onPress={() => {
-						jogador2.comprarCarta(baralho.getCarta())
-						setAtualizar(a => !a) // força atualização
+						if (vencedor === null) {
+							jogador2.comprarCarta(baralho.getCarta())
+							setAtualizar(a => !a) // força atualização
+						} else {
+							resetar()
+						}
 					}}>
 						<Botao texto="Comprar" tipo="comprar" />
 					</Pressable>
-					<Pressable style={{ marginRight: 8 }} onPress={() => { passar() }}>
+					<Pressable style={{ marginRight: 8 }} onPress={() => { if (vencedor === null) passar() }}>
 						<Botao texto="Passar" tipo="passar" />
 					</Pressable>
 					<Pressable style={{ marginRight: 8 }} onPress={() => {
@@ -89,14 +102,7 @@ export default function Home() {
 					<Text style={styles.placarPontos}>{ptsJogador2}</Text>
 					<Text style={{ fontSize: 10, color: '#fff' }}>{jogador2.getNome()}</Text>
 				</View>
-				<Pressable onPress={() => {
-					setJogador1(new JogadorClasse(partida.jogadores[0].getNome()))
-					setJogador2(new JogadorClasse(partida.jogadores[1].getNome()))
-					setVencedor(null)
-					setTurno(1)
-					setRodada(rodada + 1)
-					setAtualizar(a => !a)
-				}}>
+				<Pressable onPress={() => { resetar() }}>
 					<View style={[styles.placarInfos, { backgroundColor: '#252525', borderRadius: 50 }]}>
 						<Icon name="rotate-ccw" size={20} color="#fff" />
 					</View>
@@ -139,12 +145,16 @@ export default function Home() {
 				</View>
 				<View style={styles.controlesContainer}>
 					<Pressable style={{ marginRight: 8 }} onPress={() => {
-						jogador1.comprarCarta(baralho.getCarta())
-						setAtualizar(a => !a) // força atualização
+						if (vencedor === null) {
+							jogador1.comprarCarta(baralho.getCarta())
+							setAtualizar(a => !a) // força atualização
+						} else {
+							resetar()
+						}
 					}}>
 						<Botao texto="Comprar" tipo="comprar" />
 					</Pressable>
-					<Pressable style={{ marginRight: 8 }} onPress={() => { passar() }}>
+					<Pressable style={{ marginRight: 8 }} onPress={() => { if (vencedor === null) passar() }}>
 						<Botao texto="Passar" tipo="passar" />
 					</Pressable>
 					<Pressable style={{ marginRight: 8 }} onPress={() => {
