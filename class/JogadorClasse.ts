@@ -48,12 +48,6 @@ export default class JogadorClasse {
         return this.soma
     }
 
-    public gerarMao(baralho: BaralhoClass): void {
-        for (let i = 0; i < 1; i++) {
-            this.comprarCarta(baralho.getCarta())
-        }
-    }
-
     public comprarCarta(carta: Carta | null): void {
         if (carta && this.getValorMao() <= 21) {
             this.cartas.push(carta)

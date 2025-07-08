@@ -76,8 +76,15 @@ export default function Home() {
 				<View style={styles.controlesContainer}>
 					<Pressable style={{ marginRight: 8 }} onPress={() => {
 						if (vencedor === null) {
-							jogador2.comprarCarta(baralho.getCarta())
-							setAtualizar(a => !a) // força atualização
+							// se o valor da mão for 0 (primeira compra), jogador compra 2 cartas
+							if (jogador2.getValorMao() == 0) {
+								jogador2.comprarCarta(baralho.getCarta())
+								jogador2.comprarCarta(baralho.getCarta())
+								setAtualizar(a => !a) // força atualização
+							} else {
+								jogador2.comprarCarta(baralho.getCarta())
+								setAtualizar(a => !a) // força atualização
+							}
 						} else {
 							resetar()
 						}
@@ -146,8 +153,15 @@ export default function Home() {
 				<View style={styles.controlesContainer}>
 					<Pressable style={{ marginRight: 8 }} onPress={() => {
 						if (vencedor === null) {
-							jogador1.comprarCarta(baralho.getCarta())
-							setAtualizar(a => !a) // força atualização
+							// se o valor da mão for 0 (primeira compra), jogador compra 2 cartas
+							if (jogador1.getValorMao() == 0) {
+								jogador1.comprarCarta(baralho.getCarta())
+								jogador1.comprarCarta(baralho.getCarta())
+								setAtualizar(a => !a) // força atualização
+							} else {
+								jogador1.comprarCarta(baralho.getCarta())
+								setAtualizar(a => !a) // força atualização
+							}
 						} else {
 							resetar()
 						}
