@@ -13,9 +13,9 @@ export default function Menu() {
                     <Icon name="cards-playing" size={36} color="#E02F2C" style={{ marginRight: 8 }} />
                     <Text style={styles.titulo}>Vinte e Um</Text>
                 </View>
-                <Text style={styles.descricao}>Desafie a sorte e a estratégia no clássico jogo Vinte-e-Um! Tente vencer o oponente somando cartas sem ultrapassar 21 pontos.</Text>
+                <Text style={styles.descricao}>Desafie a sorte e a estratégia nesta versão 1v1 do jogo Vinte-e-Um! Nesta versão simplificada, tente vencer o oponente somando cartas sem ultrapassar 21 pontos.</Text>
                 <Text style={[styles.descricao, { fontWeight: 'bold', fontSize: 20 }]}>Comandos</Text>
-                <Text style={styles.regra}><Text style={styles.negrito}>Comprar:</Text> O jogador compra uma nova carta para sua mão.</Text>
+                <Text style={styles.regra}><Text style={styles.negrito}>Comprar:</Text> O jogador inicialmente compra 2 cartas para sua mão; em seguida, a cada compra, uma nova carta é adicionada à mão.</Text>
                 <Text style={styles.regra}><Text style={styles.negrito}>Passar:</Text> O jogador passa a vez, mas pode comprar mais cartas se a rodada voltar para ele</Text>
                 <Text style={styles.regra}><Text style={styles.negrito}>Encerrar:</Text> O jogador encerra sua participação na rodada, definindo o valor atual da sua mão como final e não podendo mais comprar cartas.</Text>
                 <Pressable onPress={() => setJogoIniciado(!jogoIniciado)}>

@@ -1,38 +1,62 @@
-import { View, Text, SafeAreaView, StatusBar, StyleSheet, Pressable, ImageBackground } from 'react-native'
+// react
+import { View, Text, StatusBar, StyleSheet, Pressable, ImageBackground } from 'react-native'
 import { useState, useEffect } from 'react'
-import Icon from 'react-native-vector-icons/Feather'
+
+// classes
 import JogadorClasse from '../class/JogadorClasse'
 import BaralhoClasse from '../class/BaralhoClasse'
 import PartidaClasse from '../class/PartidaClasse'
-import Carta from '../components/Carta'
 import Notificacao from '../components/Notificacao'
+
+// componentes
+import Carta from '../components/Carta'
 import Menu from './menu'
 import Botao from '../components/Botao'
 
+// bibliotecas externas
+import Icon from 'react-native-vector-icons/Feather'
+
 export default function Home() {
+	// gera nova partida
 	const partida = new PartidaClasse()
+
+	// gera novo baralho
 	const baralho = new BaralhoClasse()
 
+	// cria dois novos jogadores
 	const [jogador1, setJogador1] = useState(new JogadorClasse(partida.jogadores[0].getNome()))
 	const [jogador2, setJogador2] = useState(new JogadorClasse(partida.jogadores[1].getNome()))
+
+	// define pontos dos jogadores 
 	const [ptsJogador1, setPtsJogador1] = useState(0)
 	const [ptsJogador2, setPtsJogador2] = useState(0)
+
+	// define o primeiro turno (jogador A começa no primeiro turno enquanto o Jogador 2 fica oculto atrás da película)
 	const [turno, setTurno] = useState(partida.rodada)
+
+	// define primeira rodada com ambos os placares zerados
 	const [rodada, setRodada] = useState(1)
+
+	// variável vencedor, começa null
 	const [vencedor, setVencedor] = useState<string | null>(null)
+
+	// variável para forçar atualização 
 	const [atualizar, setAtualizar] = useState(false)
 
+	// atualiza o placar sempre que as variaveis atualizar, turno ou vencedor são alteradas 
 	useEffect(() => {		
 		if (vencedor === jogador1.getNome()) setPtsJogador1(ptsJogador1 + 1)
 		if (vencedor === jogador2.getNome()) setPtsJogador2(ptsJogador2 + 1)
 	}, [atualizar, turno, vencedor])
 
+	// função para o jogador passar para o turno
 	const passar = () => {
 		partida.proximaRodada()
 		setTurno(turno + 1)
 		setAtualizar(a => !a) // força atualização
 	}
 
+	// função para resetar a partida e começar uma nova rodada
 	const resetar = () => {
 		setJogador1(new JogadorClasse(partida.jogadores[0].getNome()))
 		setJogador2(new JogadorClasse(partida.jogadores[1].getNome()))
@@ -43,6 +67,7 @@ export default function Home() {
 	}
 
 	return (
+		// jogo
 		<ImageBackground
             source={require('../assets/img/mesa-back.jpg')}
             style={styles.mesa}
@@ -50,6 +75,8 @@ export default function Home() {
         >
 			<StatusBar barStyle="light-content" />
 			<Menu />
+
+			{/* campo do Jogador B */}
 			<View style={[styles.jogadorContainer, styles.oponente]}>
 				<View
 					style={[
@@ -104,6 +131,7 @@ export default function Home() {
 				</View>
 			</View>
 
+			{/* placar e comandos */}
 			<View style={styles.baralhoContainer}>
 				<View style={{ alignItems: 'center' }}>
 					<Text style={styles.placarPontos}>{ptsJogador2}</Text>
@@ -127,6 +155,7 @@ export default function Home() {
 				</View>
 			</View>
 
+			{/* campo do Jogador A */}
 			<View style={[styles.jogadorContainer, styles.jogador]}>
 				<View
 					style={[
