@@ -23,7 +23,6 @@ export default function Home() {
 	const [atualizar, setAtualizar] = useState(false)
 
 	useEffect(() => {
-		//console.log("Rodada: ", rodada)
 		if (vencedor === jogador1.getNome()) setPtsJogador1(ptsJogador1 + 1)
 		if (vencedor === jogador2.getNome()) setPtsJogador2(ptsJogador2 + 1)
 	}, [atualizar, turno, vencedor])

@@ -31,7 +31,6 @@ export default class JogadorClasse {
 
     public getCartasMao(): Array<Carta> {
         if (this.cartas.length === 0) {
-            //console.log(this.getNome() + " esta com a mão vazia")
             return []
         } else {
             return this.cartas
@@ -51,7 +50,6 @@ export default class JogadorClasse {
 
     public gerarMao(baralho: BaralhoClass): void {
         for (let i = 0; i < 1; i++) {
-            console.log(this.getNome())
             this.comprarCarta(baralho.getCarta())
         }
     }
@@ -78,13 +76,10 @@ export default class JogadorClasse {
 
         if (player1.getPontos() > 0 && player2.getPontos() > 0) {
             if((21 - pontosMaoJogador1) < (21 - pontosMaoJogador2)) {
-                console.log(`Jogador ${player1.getValorMao()} ganhou`)
                 resultado = player1.getNome()
             } else if ((21 - pontosMaoJogador1) > (21 - pontosMaoJogador2)) {
-                console.log(`Jogador ${player2.getValorMao()} ganhou`)
                 resultado = player2.getNome()
             } else {
-                console.log('Empate')
                 resultado = 'Empate'
             }
         }

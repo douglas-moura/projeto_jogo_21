@@ -8,7 +8,6 @@ type NotificacaoProps = {
 
 
 export default function Notificacao({ resultado }: NotificacaoProps) {
-    if (resultado != undefined) console.log(resultado)
     return (
         <View style={[styles.notificacaoContainer, typeof resultado == 'string' ? styles.empate : resultado ? styles.vencedor : styles.perdedor ]}>
             <Icon
